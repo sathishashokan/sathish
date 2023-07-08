@@ -1,0 +1,77 @@
+<html>
+<head>
+    <style type="text/css">
+        html {
+            font-family: system-ui;
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .div_employee {
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 50px;
+            background-color: black;
+            color: white;
+        }
+        .div_button {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            position: fixed;  
+            bottom: 5px;
+            width: 95%;  
+            color: white;  
+            text-align: center;  
+        }
+        .button {
+            border: 2px solid #09AAEA;
+            border-radius: 5px;
+            background-color: #09AAEA;
+            margin: 20px 0px;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            cursor: pointer;
+            background: white;
+            color: #09AAEA;
+        }
+        .else {
+            display: flex;
+            justify-content: center;
+            background: red;
+            color: white;
+            width: 100%;
+            font-weight: bold;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <% if @employee %>
+        <div class='div_employee'>
+            <h1>Employee Details</h1>
+            <p>Name: <%= @employee.name %></p>
+            <p>Email: <%= @employee.email %></p>
+            <p>Designation: <%= @employee.designation %></p>
+            <p>Department: <%= @employee.department.name %></p>
+        </div>
+    <% else %>
+        <p class='else'>user not found</p>
+    <% end %>
+    <div class='div_button'>
+        <%= link_to 'Back', employees_path, class: 'button' %>
+        <%= link_to 'Home', root_path, class: 'button' %>
+    </div>
+</body>

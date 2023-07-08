@@ -1,20 +1,107 @@
-<h1>EMPLOYEES</h1>
+<html>
+<head>
+    <style type="text/css">
+    html {
+            font-family: system-ui;
+        }
+    h1 {
+        display: flex;
+        justify-content: center;
+        color: white;
+        padding: 10px 20px;
+        background: black;
+        border-radius: 6px;
+    }
+    span {
+        font-weight: normal;
+    }
+    table {
+        border: 1px solid #C8C7C7;
+        border-radius: 6px;
+        width: 100%;
+        border-spacing: 0px;
+        empty-cells: hide;
+    }
+    td, th {
+        border: 1px solid rgb(190,190,190);
+        padding: 10px;
+    }
+    th {
+        border: 0.01mm solid #C8C7C7;
+        background-color: #ECECEC
+    }
+    .edit-delete-cell {
+        display: flex;
+        align-items: center;
+    }
+    .edit-button, .delete-button {
+        justify-content: center;
+        background-color: #09AAEA;
+        border: 0px solid #FC1313;
+        border-radius: 6px;
+        padding: 5px; 
+        font-size: 15px;
+        color: white;
+        text-decoration: none; margin: 0px 5px;
+    }
+    .delete-button {
+        background-color: #FC1313;
+    }
+    .delete-button:hover {
+        cursor: pointer;
+    }
+    .div_button {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .button {
+        margin: 20px 10px 20px 0px;
+        border: 2px solid #09AAEA;
+        border-radius: 6px;
+        background-color: #09AAEA;
+        padding: 10px 20px;
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+    }
+    .button:hover {
+        background: white;
+        color: #09AAEA;
+    }
+    </style>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <h1>EMPLOYEES</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Designation</th>
-      <th>Department</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-          <td><%= employee.first_name %></td>
-          <td><%= employee.designation %></td>
-          <td>Sales</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <h2>Total Employees: <span><%= @employees.count %></span></h2>
+
+    <table>
+    <thead>
+        <tr>
+        <th style="text-align:left;">Name</th>
+        <th style="text-align:left;">Designation</th>
+        <th style="text-align:left;">Department</th>
+        <th style="text-align:left;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @employees.each do |employee| %>
+        <tr>
+            <td><%= employee.name.capitalize %></td>
+            <td><%= employee.designation %></td>
+            <td><%= employee.department.name %></td>
+            <td class="edit-delete-cell">
+                <%= link_to "Edit", edit_employee_path(employee), class: 'edit-button' %> |
+                <%= button_to "Delete", employee_path(employee), data: { turbo_confirm: "Are you sure you want to delete this employee?" }, method: :delete, class: 'delete-button' %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+    <div class='div_button'>
+        <%= link_to 'Create Employee', new_employee_path, class: 'button' %>
+        <%= link_to 'Home', root_path, class: 'button' %>
+    </div>
+</body>
+</html>

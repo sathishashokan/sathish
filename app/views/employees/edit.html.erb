@@ -1,0 +1,101 @@
+<html>
+<head>
+    <style type="text/css">
+        html {
+            font-family: system-ui;
+        }
+        h1 {
+            font-family: system-ui;
+            display: flex;
+            color: white;
+            margin: 0px;
+            padding: 10px 50px;
+            background: black;
+            border-radius: 6px;
+            font-size: 20px;
+        }
+        label {
+            font-family: system-ui;
+            font-weight: bold;
+        }
+        .div_1 {
+            margin: 20px;
+            padding: 20px;
+        }
+        div {
+            display: block;
+            justify-content: center;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+        .large-text-field {
+            display: flex;
+            flex-wrap: wrap;
+            font-family: sans-serif;
+            font-size: 20px;
+            border: 2px solid #C8C7C7;
+            border-radius: 5px;
+            margin: 10px 0px;
+            padding: 5px; 
+        }
+        .back-button, .button {
+            border: 2px solid #09AAEA;
+            border-radius: 5px;
+            background-color: #09AAEA;
+            margin: 20px 0px;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .button:hover {
+            cursor: pointer;
+            background: white;
+            color: #09AAEA;
+        }
+        .back-button {
+            margin: 40px 0px;
+        }
+        .back-button:hover {
+            background: white;
+            color: #09AAEA;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit : <%= @employee.name.upcase %></h1>
+<%= form_with model: @employee, url: employee_path(@employee), method: :put do |form| %>
+  <div class="div_1">
+    <div>
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, required: :true, class: 'large-text-field' %>
+    </div>
+
+    <div>
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, required: :true, class: 'large-text-field' %>
+    </div>
+
+    <div>
+        <%= form.label :email %>
+        <%= form.email_field :email, required: :true, class: 'large-text-field' %>
+    </div>
+
+    <div>
+        <%= form.label :designation %>
+        <%= form.text_field :designation, required: :true, class: 'large-text-field' %>
+    </div>
+
+    <div>
+        <%= form.label :department_id %>
+        <%= form.collection_select :department_id, Department.all, :id, :name, {}, class: 'large-text-field' %>
+    </div>
+
+    <div>
+        <%= form.submit "Update Employee", class: 'button' %>
+    </div>
+  </div>
+<% end %>
+<%= link_to 'Back', employees_path, class: 'back-button' %>
+</body>
+</html>
