@@ -1,0 +1,56 @@
+<html>
+<head>
+    <style type="text/css">
+    html {
+            font-family: system-ui;
+            margin: 0px;
+        }
+    h1 {
+        display: flex;
+        justify-content: center;
+        color: white;
+        margin: 0px;
+        padding: 10px 0px;
+        background: black;
+    }
+    body {
+        margin: 0px;
+        background: #EDEDED;
+    }
+    .div-class {
+        margin: 100px 300px;
+        padding: 40px 20px;
+        border-radius: 10px;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .button {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0px;
+        border: 2px solid #09AAEA;
+        border-radius: 6px;
+        background-color: #09AAEA;
+        width: 150px;
+        padding: 10px 20px;
+        font-size: 20px;
+        color: white;
+        text-decoration: none;
+    }
+    .button:hover {
+        background: white;
+        color: #09AAEA;
+    }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Employee Reimbursement Portal</h1>
+    <div class="div-class">
+        <%= link_to 'Employees', employees_path, class: 'button'%>
+        <%= link_to 'Create Bill', new_bill_path, class: 'button'%>
+        <%= link_to 'Show Bill', bills_path, class: 'button'%>
+    </div>
+</body>
+</html>
